@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,5 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/hello', function () {
-    return '<h1>Привіт, Єгор! Гарної відпустки!</h1>';
+    return view('hello');
 });
+
+Route::get('/about', AboutController::class);
