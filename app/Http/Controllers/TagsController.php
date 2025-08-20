@@ -10,10 +10,31 @@ class TagsController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function index()
     {
-        $tags = DB::table('tags')->orderByDesc('created_at')->get();
-        return view('tags.index', ['tags' => $tags]);
+        $tags = DB::table('tags')
+            ->orderByDesc('created_at')
+            ->get();
 
+        return view('tags.index', compact('tags'));
+    }
+
+    public function create()
+    {
+        return view('tags.create');
+    }
+
+    public function show($id)
+    {
+        $tag = DB::table('tags')->find($id);
+
+        return view('tags.show', compact('tag'));
+    }
+
+    public function edit($id)
+    {
+        $tag = DB::table('tags')->find($id);
+
+        return view('tags.edit', compact('tag'));
     }
 }

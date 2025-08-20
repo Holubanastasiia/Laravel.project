@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,5 +15,5 @@ Route::get('/hello', function () {
 
 Route::get('/about', AboutController::class);
 
-Route::get('/categories', CategoryController::class);
-Route::get('/tags', \App\Http\Controllers\TagsController::class);
+Route::resource('categories', CategoryController::class);
+Route::resource('tags', TagsController::class);

@@ -11,10 +11,31 @@ class CategoryController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function index()
     {
-        $categories = DB::table('categories')->orderByDesc('created_at')->get();
-        return view('categories.index', ['categories' => $categories]);
+        $categories = DB::table('categories')
+            ->orderByDesc('created_at')
+            ->get();
 
+        return view('categories.index', compact('categories'));
+    }
+
+    public function create()
+    {
+        return view('categories.create');
+    }
+
+    public function show($id)
+    {
+        $category = DB::table('categories')->find($id);
+
+        return view('categories.show', compact('category'));
+    }
+
+    public function edit($id)
+    {
+        $category = DB::table('categories')->find($id);
+
+        return view('categories.edit', compact('category'));
     }
 }

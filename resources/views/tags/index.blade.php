@@ -1,6 +1,14 @@
-<h1>Tags</h1>
-<ul>
-    @foreach ($tags as $tag)
-        <li>{{ $tag->name }} - Created at: {{ $tag->created_at }}</li>
-    @endforeach
-</ul>
+<x-app-layout>
+    <x-slot name="header">
+        <x-header title="tags list"/>
+    </x-slot>
+    <ul>
+        @foreach ($tags as $tag)
+            <li>
+                <a href="{{ route('categories.show', $tag->id) }}">
+                    {{ $tag->name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+</x-app-layout>
