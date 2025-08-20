@@ -11,6 +11,6 @@ class AboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('pages.about');
+        return view('pages.about', ['page' => 'About Page']);
     }
 }

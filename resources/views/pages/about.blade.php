@@ -1,1 +1,1 @@
-<h1>Hi, it's About Page</h1>
+<h1>Hi, it's {{ $page }}</h1>
