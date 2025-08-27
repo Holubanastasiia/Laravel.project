@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,17 @@ Route::get('/about', AboutController::class);
 Route::resource('categories', CategoryController::class);
 
 Route::resource('tags', TagsController::class);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('users', UserController::class);
+});
