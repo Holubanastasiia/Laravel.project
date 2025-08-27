@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +18,12 @@ class CategoryController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('categories.create');
+        return view('admin.categories.create');
     }
 
     public function store(Request $request)
@@ -35,37 +36,34 @@ class CategoryController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.categories.index')
             ->with('success', 'Категорію додано успішно!');
     }
 
-    public function show($id)
+    public function show(Category $category)
     {
-        $category = Category::findOrFail($id);
-        return view('categories.show', compact('category'));
+        return view('admin.categories.show', compact('category'));
 //        $category = DB::table('categories')->find($id);
 //
 //        return view('categories.show', compact('category'));
     }
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::findOrFail($id);
-        return view('categories.edit', compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        $category = Category::findOrFail($id);
         $category->update([
             'name' => $request->name,
         ]);
 
-        return redirect()->route('categories.index')
+        return redirect()->route('admin.categories.index')
             ->with('success', 'Категорію оновлено успішно!');
     }
 }

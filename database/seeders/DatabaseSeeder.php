@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategoriesTableSeeder::class,
             TagsTableSeeder::class,
+            SlugSeeder::class,
         ]);
     }
 }

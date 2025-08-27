@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TagsController extends Controller
+class TagController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -17,12 +18,12 @@ class TagsController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('tags.index', compact('tags'));
+        return view('admin.tags.index', compact('tags'));
     }
 
     public function create()
     {
-        return view('tags.create');
+        return view('admin.tags.create');
     }
 
     public function store(Request $request)
@@ -35,38 +36,35 @@ class TagsController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('tags.index')
+        return redirect()->route('admin.tags.index')
             ->with('success', 'Тег додано успішно!');
     }
 
-    public function show($id)
+    public function show(Tag $tag)
     {
 //        $tag = DB::table('tags')->find($id);
 
-        $tag = Tag::findOrFail($id);
-        return view('tags.show', compact('tag'));
+        return view('admin.tags.show', compact('tag'));
     }
 
-    public function edit($id)
+    public function edit(Tag $tag)
     {
 //        $tag = DB::table('tags')->find($id);
 
-        $tag = Tag::findOrFail($id);
-        return view('tags.edit', compact('tag'));
+        return view('admin.tags.edit', compact('tag'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        $tag = Tag::findOrFail($id);
         $tag->update([
             'name' => $request->name,
         ]);
 
-        return redirect()->route('tags.index')
+        return redirect()->route('admin.tags.index')
             ->with('success', 'Тег оновлено успішно!');
     }
 }

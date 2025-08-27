@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class Tag extends Model
+class Brand extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['name', 'slug'];
+
+    protected $fillable = ['name', 'description', 'slug'];
     public function getRouteKeyName()
     {
         return 'slug';

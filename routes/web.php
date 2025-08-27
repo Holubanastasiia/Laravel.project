@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,9 +23,17 @@ Route::get('/about', AboutController::class);
 //Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 //Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 
-Route::resource('categories', CategoryController::class);
+Route::prefix('admin')->name('admin.')->group(function () {
 
-Route::resource('tags', TagsController::class);
+    Route::resource('categories', CategoryController::class);
+
+    Route::resource('tags', TagController::class);
+
+    Route::resource('users', UserController::class);
+
+    Route::resource('brands', BrandController::class);
+
+});
 
 Route::middleware([
     'auth:sanctum',
@@ -34,8 +43,4 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-});
-
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('users', UserController::class);
 });
