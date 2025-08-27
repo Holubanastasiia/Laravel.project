@@ -12,5 +12,7 @@
             </li>
         @endforeach
     </ul>
+
+    <a href="{{ route('categories.create') }}">Add new category</a>
 </x-app-layout>
 
