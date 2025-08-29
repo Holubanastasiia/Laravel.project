@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 class Brand extends Model
 {
     use SoftDeletes;
+    use HasFactory;
 
     protected $fillable = ['name', 'description', 'slug'];
     public function getRouteKeyName()
