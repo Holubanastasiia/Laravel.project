@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <x-header title="{{ $brand->name }}"/>
     </x-slot>
@@ -27,4 +27,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin>

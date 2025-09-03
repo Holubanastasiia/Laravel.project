@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <x-header title="Edit category {{ $tag->name }}"/>
     </x-slot>
@@ -36,6 +36,6 @@
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-admint>
 
 

@@ -1,8 +1,4 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-header title="Create new Brand"/>
-    </x-slot>
-
+<x-admin>
     <div class="max-w-lg mx-auto py-6">
         <div class="bg-white shadow rounded-lg p-6">
             <form action="{{ route('admin.brands.store') }}" method="POST" class="space-y-4">
@@ -44,4 +40,4 @@
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-admin>

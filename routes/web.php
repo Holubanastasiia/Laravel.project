@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Livewire\Admin\Users\UserList;
+use App\Livewire\Admin\Users;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,21 +25,29 @@ Route::get('/about', AboutController::class);
 //Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
 //Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+//Route::prefix('admin')->name('admin.')->group(function () {
+//
+//    Route::resource('categories', CategoryController::class);
+//
+//    Route::resource('tags', TagController::class);
+//
+//    Route::resource('users', UserController::class);
+//
+//    Route::resource('brands', BrandController::class);
+//
+//});
 
-    Route::resource('categories', CategoryController::class);
-
-    Route::resource('tags', TagController::class);
-
-    Route::resource('users', UserController::class);
-
-    Route::resource('brands', BrandController::class);
-
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('admin/categories/trashed', 'trashed')->name('admin.categories.trashed');
+    Route::post('admin/categories/restore/{id}', 'restore')->name('admin.categories.restore');
+    Route::delete('admin/categories/force/{id}', 'force')->name('admin.categories.force');
 });
 
 Route::get('/mailable', function () {
     return new \App\Mail\OrderShipped();
 });
+
+Route::get('users', UserList::class);
 
 Route::middleware([
     'auth:sanctum',
@@ -47,4 +57,16 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+
+        Route::resource('categories', CategoryController::class);
+
+        Route::resource('tags', TagController::class);
+
+        Route::resource('users', UserController::class);
+
+        Route::resource('brands', BrandController::class);
+
+    });
 });

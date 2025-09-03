@@ -1,39 +1,72 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-header title="Edit category {{ $category->name }}"/>
+<x-admin>
+
+    <x-slot name="breadcrumb">
+        <section class="is-title-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <ul>
+                    <li>Admin</li>
+                    <li>{{ $breadcrumb }}</li>
+                </ul>
+                <a href="{{ route('admin.categories.index') }}" class="button blue">
+                    <span>All categories</span>
+                </a>
+
+            </div>
+        </section>
     </x-slot>
 
-    <div class="max-w-lg mx-auto py-6">
-        <div class="bg-white shadow rounded-lg p-6">
-            <form action="{{ route('admin.categories.update', $category->slug) }}" method="POST" class="space-y-4">
-                @csrf
-                @method('PUT')
+    <section class="section main-section">
+        <div class="card mb-6">
+            <header class="card-header">
+                <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                    {{ $title }}
+                </p>
+            </header>
+            <div class="card-content">
+                <form method="post" action="{{ route('admin.categories.update', $category) }}">@csrf @method("PUT")
 
-                <div>
-                    <label for="name" class="block text-gray-700 font-semibold mb-2">Category Name:</label>
-                    <input type="text"
-                           name="name"
-                           id="name"
-                           value="{{ $category->name }}"
-                           required
-                           class="w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:border-indigo-500 px-3 py-2">
-                    @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
+                    <div class="field">
+                        <label class="label">Name</label>
 
-                <div class="flex space-x-4">
-                    <button type="submit"
-                            class="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition">
-                        Update
-                    </button>
+                        <div class="control">
+                            <input name="name" class="input" type="text" value="{{ $category->name }}">
+                        </div>
+                        <p class="help">
+                            This field is required
+                        </p>
+                    </div>
 
-                    <a href="{{ route('admin.categories.index') }}"
-                       class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">
-                        Cancel
-                    </a>
-                </div>
-            </form>
+                    <div class="field">
+                        <label class="label">Status</label>
+
+                        <div class="control">
+                            <input name="status" class="input" type="checkbox"
+                                   checked={{ $category->status ? 'checked': ''}}>
+                        </div>
+                        <p class="help">
+                            This field is required
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <div class="field grouped">
+                        <div class="control">
+                            <button type="submit" class="button green">
+                                Update category
+                            </button>
+                        </div>
+                        <div class="control">
+                            <button type="reset" class="button red">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</x-app-layout>
+
+
+    </section>
+</x-admin>

@@ -1,8 +1,4 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-header title="Brands list"/>
-    </x-slot>
-
+<x-admin>
     <div class="max-w-4xl mx-auto py-6">
         <div class="flex justify-end mb-4">
             <a href="{{ route('admin.brands.create') }}"
@@ -23,5 +19,5 @@
             @endforeach
         </div>
     </div>
-</x-app-layout>
+</x-admin>
 

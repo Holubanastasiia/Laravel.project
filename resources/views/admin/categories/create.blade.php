@@ -1,8 +1,18 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-header title="Create new category"/>
-    </x-slot>
+<x-admin>
+    <x-slot name="breadcrumb">
+        <section class="is-title-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <ul>
+                    <li>Admin</li>
+                    <li>{{ $breadcrumb }}</li>
+                </ul>
+                <a href="{{ route('admin.categories.index') }}" class="button blue">
+                    <span>All categories</span>
+                </a>
 
+            </div>
+        </section>
+    </x-slot>
     <div class="max-w-lg mx-auto py-6">
         <div class="bg-white shadow rounded-lg p-6">
             <form action="{{ route('admin.categories.store') }}" method="POST" class="space-y-4">
@@ -20,18 +30,21 @@
                     @enderror
                 </div>
 
-                <div class="flex space-x-4">
-                    <button type="submit"
-                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
-                        Add
-                    </button>
-
-                    <a href="{{ route('admin.categories.index') }}"
-                       class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">
-                        Cancel
-                    </a>
+                <div class="field grouped">
+                    <div class="control">
+                        <button type="submit"
+                                class="button green">
+                            Add
+                        </button>
+                    </div>
+                    <div class="control">
+                        <a href="{{ route('admin.categories.index') }}"
+                           class="button red">
+                            Cancel
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-admin>

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <x-header title="{{ $tag->name }}"/>
     </x-slot>
@@ -24,5 +24,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin>
 

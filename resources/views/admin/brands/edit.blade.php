@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin>
     <x-slot name="header">
         <x-header title="Edit brand {{ $brand->name }}"/>
     </x-slot>
@@ -46,4 +46,4 @@
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-admin>

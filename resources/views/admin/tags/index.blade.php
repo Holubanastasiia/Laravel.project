@@ -1,6 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-header title="Tags list"/>
+<x-admin>
+    <x-slot name="breadcrumb">
+        <section class="is-title-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <ul>
+                    <li>Admin</li>
+{{--                    <li>{{ $breadcrumb }}</li>--}}
+                </ul>
+                <a href="{{ route("admin.tags.create") }}" class="button blue">
+                    <span>Create new</span>
+                </a>
+
+            </div>
+        </section>
     </x-slot>
 
     <div class="max-w-4xl mx-auto py-6">
@@ -22,6 +33,6 @@
             @endforeach
         </div>
     </div>
-</x-app-layout>
+</x-admin>
 
 

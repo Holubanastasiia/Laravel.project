@@ -1,8 +1,4 @@
-<x-app-layout>
-    <x-slot name="header">
-        <x-header title="Create new tag"/>
-    </x-slot>
-
+<x-admin>
     <div class="max-w-lg mx-auto py-6">
         <div class="bg-white shadow rounded-lg p-6">
             <form action="{{ route('admin.tags.store') }}" method="POST" class="space-y-4">
@@ -20,19 +16,22 @@
                     @enderror
                 </div>
 
-                <div class="flex space-x-4">
-                    <button type="submit"
-                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
-                        Add
-                    </button>
-
-                    <a href="{{ route('admin.tags.index') }}"
-                       class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">
-                        Cancel
-                    </a>
+                <div class="field grouped">
+                    <div class="control">
+                        <button type="submit"
+                                class="button green">
+                            Add
+                        </button>
+                    </div>
+                    <div class="control">
+                        <a href="{{ route('admin.tags.index') }}"
+                           class="button red">
+                            Cancel
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-admin>
 
