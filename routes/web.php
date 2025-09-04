@@ -5,6 +5,11 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Livewire\Admin\Posts\CreatePost;
+use App\Livewire\Admin\Posts\PostTable;
+use App\Livewire\Admin\Products\CreateProduct;
+use App\Livewire\Admin\Products\ProductTable;
+use App\Livewire\Admin\Products\UpdateProduct;
 use App\Livewire\Admin\Users\UserList;
 use App\Livewire\Admin\Users;
 use Illuminate\Support\Facades\Route;
@@ -70,3 +75,12 @@ Route::middleware([
 
     });
 });
+
+Route::get('admin/posts', PostTable::class)->name('admin.products');
+Route::get('admin/posts/create', CreatePost::class)->name('admin.products.create');
+Route::get('admin/posts/{post}/edit', \App\Livewire\Admin\Posts\UpdatePost::class)
+    ->name('admin.posts.edit');
+
+Route::get('admin/products', ProductTable::class)->name('admin.products');
+Route::get('admin/products/create', CreateProduct::class)->name('admin.products.create');
+Route::get('admin/products/{product}/update', UpdateProduct::class)->name('admin.products.update');
