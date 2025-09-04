@@ -9,7 +9,7 @@
 
     <form wire:submit.prevent="update" class="space-y-4">
         <div>
-            <label class="block font-medium">Заголовок</label>
+            <label class="block font-medium">Post Title</label>
             <input type="text" wire:model="title"
                    class="w-full border rounded p-2" />
             @error('title') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
@@ -23,7 +23,7 @@
         </div>
 
         <div>
-            <label class="block font-medium">Контент</label>
+            <label class="block font-medium">Content</label>
             <textarea wire:model="content" rows="5" class="w-full border rounded p-2"></textarea>
             @error('content') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
@@ -39,12 +39,12 @@
 
         <div class="flex items-center">
             <input type="checkbox" wire:model="published_at" class="mr-2">
-            <label>Опубліковано</label>
+            <label>Published</label>
         </div>
 
         <button type="submit"
-                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            Зберегти
+                class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">
+            Save
         </button>
     </form>
 </div>

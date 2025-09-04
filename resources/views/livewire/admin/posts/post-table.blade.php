@@ -78,7 +78,8 @@ focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
                         {{ $item->status }}
                     </td>
                     <td class="px-6 py-4 text-right">
-                        <a href="{{ route('admin.posts.edit', $item->id) }}" type="button" class="focus:outline-none blue bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
+                        <a href="{{ route('admin.posts.edit', $item->id) }}" type="button"
+                           class="focus:outline-none blue bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900">
                             Edit
                         </a>
                         <button
@@ -98,6 +99,7 @@ dark:hover:bg-red-700 dark:focus:ring-red-900"
             </tbody>
         </table>
     </div>
+    {{ $posts->links() }}
     <a type="submit" href="/admin/posts/create" class="button blue ">
         Add New Post
     </a>

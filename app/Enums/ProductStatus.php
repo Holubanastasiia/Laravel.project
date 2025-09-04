@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enams;
+namespace App\Enums;
 
 enum ProductStatus: int
 {

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin\Products;
 
-use App\Enams\ProductStatus;
+use App\Enums\ProductStatus;
 use App\Livewire\Forms\ProductForm;
 use App\Models\Product;
 use Livewire\Attributes\Layout;

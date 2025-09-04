@@ -3,11 +3,13 @@
 namespace App\Livewire\Admin\Posts;
 
 use App\Models\Post;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-
+#[Layout('layouts.admin')]
 class UpdatePost extends Component
 {
+
     use WithFileUploads;
     public Post $post;
     public $title;
@@ -54,7 +56,7 @@ class UpdatePost extends Component
         ]);
 
         session()->flash('success', 'Post updated ✅');
-        return $this->redirect('/admin/products');
+        return $this->redirect('/admin/posts');
     }
 
     public function render()
